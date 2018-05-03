@@ -1,0 +1,53 @@
+<html>
+<head>
+    <title>Secure video demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/uikit.min.css" />
+</head>
+<body>
+    <div id="app">
+        <nav class="uk-navbar-container" uk-navbar>
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav">
+                    <li class="uk-active"><a href="">{{ navaction }}</a></li>
+                    <li><a href=""></a></li>
+                </ul>
+            </div>
+        </nav>
+        <ul class="uk-child-width-expand" uk-tab>
+            <li><a href="#">Put Encrypted</a></li>
+            <li><a href="#">Get Encrypted</a></li>
+            <li><a href="#">Get Signed URL</a></li>
+            <li><a href="#">Get Signed Cookie</a></li>
+        </ul>
+        <ul class="uk-switcher uk-margin">
+            <li>
+                <div class="uk-margin">
+                    <div class="uk-container uk-container-small">
+                        <input class="uk-input" type="text" placeholder="Input" v-model="putobjectdata">
+                        <br>
+                        <br>
+                        <button class="uk-button uk-button-primary uk-button-large" @click="uploadEncryptedData">Encrypt and Upload</button>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="uk-margin">
+                    <div class="uk-container uk-container-small">
+                        <button class="uk-button uk-button-primary uk-button-large" @click="downloadAndDecryptData">Download and Decrypt</button>
+                        <br>
+                        <br>
+                        <p>{{ getobjectdata }}</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="node_modules/aws-sdk/"></script>
+    <script src="js/uikit.min.js"></script>
+    <script src="js/uikit-icons.min.js"></script>
+    <script src="build/build.js"></script>
+</body>
+</html>
