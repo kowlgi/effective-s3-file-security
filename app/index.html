@@ -25,9 +25,19 @@
             <li>
                 <div class="uk-margin">
                     <div class="uk-container uk-container-small">
-                        <input class="uk-input" type="text" placeholder="Input" v-model="putobjectdata">
-                        <br>
-                        <br>
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="form-stacked-text">Filename</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" id="form-stacked-text" type="text" placeholder="Filename" v-model="putfile">
+                            </div>
+                        </div>
+
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="form-stacked-text">Data</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" id="form-stacked-text" type="text" placeholder="Data" v-model="putobjectdata">
+                            </div>
+                        </div>
                         <button class="uk-button uk-button-primary uk-button-large" @click="uploadEncryptedData">Encrypt and Upload</button>
                     </div>
                 </div>
@@ -35,6 +45,12 @@
             <li>
                 <div class="uk-margin">
                     <div class="uk-container uk-container-small">
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="form-stacked-text">Filename</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" id="form-stacked-text" type="text" placeholder="Filename" v-model="getfile">
+                            </div>
+                        </div>
                         <button class="uk-button uk-button-primary uk-button-large" @click="downloadAndDecryptData">Download and Decrypt</button>
                         <br>
                         <br>
@@ -45,7 +61,6 @@
         </ul>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="node_modules/aws-sdk/"></script>
     <script src="js/uikit.min.js"></script>
     <script src="js/uikit-icons.min.js"></script>
     <script src="build/build.js"></script>
