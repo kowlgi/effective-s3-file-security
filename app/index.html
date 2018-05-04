@@ -76,16 +76,18 @@
             <li>
                 <div class="uk-margin">
                     <div class="uk-container uk-container-small">
-                        <div class="uk-margin" uk-margin>
-                            <div uk-form-custom="target: true">
-                                <input type="file">
-                                <input class="uk-input uk-form-width-medium" type="text" placeholder="Click to select file" disabled>
+                        <div class="uk-margin">
+                            <button class="uk-button uk-button-primary" type="button" @click="togglePresignedURL">Toggle URL</button>
+                        </div>
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="form-stacked-text">{{ presignedurltitle }} </label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" id="form-stacked-text" type="text" placeholder="URL" v-model="urlforpresigneddemo">
                             </div>
                         </div>
-                        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-                            <label><input class="uk-checkbox" type="checkbox" v-model="getpresignedurl"> Get Pre-signed URL</label>
+                        <div class="uk-margin">
+                            <video ref="presigneddemovideo" :src="urlforpresigneddemo" controls autoplay  width="640" height="480"/>
                         </div>
-                        <button class="uk-button uk-button-primary uk-button-large" @click="uploadPresignedURLFile">Upload File</button>
                         <div class="uk-alert-danger" uk-alert v-if="presignedurlerrormessage">
                             <p>{{presignedurlerrormessage}}</p>
                         </div>
@@ -107,7 +109,7 @@
                         <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
                             <label><input class="uk-checkbox" type="checkbox" v-model="getsignedurl"> Get Signed URL</label>
                         </div>
-                        <button class="uk-button uk-button-primary uk-button-large" @click="downloadSignedURLFile">Download File</button>
+
                         <div class="uk-alert-danger" uk-alert v-if="getsignedurlerrormessage">
                             <p>{{getsignedurlerrormessage}}</p>
                         </div>

@@ -3,9 +3,12 @@ var aws_config = require('./config.js').aws_config;
 var AWS = require("aws-sdk");
 AWS.config.update(aws_config);
 var s3 = new AWS.S3();
+
 const ENCRYPTION_DEMO_BUCKET = "clientside-encryption-demo-bucket";
 const SIGNING_DEMO_BUCKET = "signing-demo-bucket";
 const ENCRYPTION_CMK_ARN = "arn:aws:kms:us-east-1:311629526619:key/a2b8864e-99f1-4408-ad3a-e7ee2a129fd2"
+const SIGNING_DEMO_URL = "https://signing-demo-bucket.s3.amazonaws.com/Wildlife.mp4";
+const SIGNING_DEMO_OBJECT_KEY = "Wildlife.mp4";
 var app = new Vue({
     el: '#app',
     data: {
@@ -21,6 +24,9 @@ var app = new Vue({
         decrypterrormessage: '',
         decryptsuccessmessage: '',
         getpresignedurl: false,
+        presignedurltitle: '👎 Using Normal URL',
+        presignedurlenabled: false,
+        urlforpresigneddemo: SIGNING_DEMO_URL,
         presignedurlerrormessage: '',
         presignedurlsuccessmessage: '',
         getsignedurlfilename: '',
@@ -31,6 +37,9 @@ var app = new Vue({
         getsignedcookie: false,
         getsignedcookiesuccessmessage: '',
         getsignedcookieerrormessage: ''
+    },
+    mounted: function(){
+        this.$refs.presigneddemovideo.addEventListener('error', this.presignedDemoVideoError);
     },
     methods: {
         uploadEncryptedFile(){
@@ -77,8 +86,21 @@ var app = new Vue({
                 });
             }
         },
-        uploadPresignedURLFile(){
-
+        togglePresignedURL(){
+            this.presignedurlerrormessage = '';
+            if(this.presignedurlenabled) {
+                this.presignedurlenabled = false;
+                this.urlforpresigneddemo = SIGNING_DEMO_URL;
+                this.presignedurltitle = '👎 Using Normal URL';
+            } else {
+                this.presignedurlenabled = true;
+                this.urlforpresigneddemo = s3.getSignedUrl('getObject', {Key: SIGNING_DEMO_OBJECT_KEY, Bucket: SIGNING_DEMO_BUCKET});
+                this.presignedurltitle = '👍 Using Pre-signed URL';
+            }
+        },
+        presignedDemoVideoError(event){
+            event.preventDefault();
+            this.presignedurlerrormessage = "Error: Cannot play video.";
         },
         downloadSignedURLFile(){
 
