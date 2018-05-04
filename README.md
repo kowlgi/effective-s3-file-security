@@ -8,7 +8,7 @@ Clone this repository on your computer.
 
 BUCKET SETUP
 ------------
-Open a terminal and cd to the bucketSetup folder. Run:
+Open a terminal and cd to the AWS_Setup folder. Run:
 
     chmod +x setupEncryptionBucket.sh
     ./setupEncryptionBucket.sh
