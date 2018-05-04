@@ -42,6 +42,12 @@
                             <label><input class="uk-checkbox" type="checkbox" v-model="enableEncryption"> Encrypt</label>
                         </div>
                         <button class="uk-button uk-button-primary uk-button-large" @click="uploadEncryptedData">Upload File</button>
+                        <div class="uk-alert-danger" uk-alert v-if="encrypterrormessage">
+                            <p>{{encrypterrormessage}}</p>
+                        </div>
+                        <div class="uk-alert-success" uk-alert v-if="encryptsuccessmessage">
+                            <p>{{encryptsuccessmessage}}</p>
+                        </div>
                     </div>
                 </div>
             </li>
@@ -58,17 +64,36 @@
                             <label><input class="uk-checkbox" type="checkbox" v-model="enableDecryption"> Decrypt</label>
                         </div>
                         <button class="uk-button uk-button-primary uk-button-large" @click="downloadAndDecryptData">Download File</button>
-                        <br>
-                        <br>
-                        <p>{{ getobjectdata }}</p>
+                        <div class="uk-alert-danger" uk-alert v-if="decrypterrormessage">
+                            <p>{{decrypterrormessage}}</p>
+                        </div>
+                        <div class="uk-alert-success" uk-alert v-if="decryptsuccessmessage">
+                            <p>{{decryptsuccessmessage}}</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="uk-margin">
+                    <div class="uk-container uk-container-small">
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="form-stacked-text">Filename</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" id="form-stacked-text" type="text" placeholder="Filename" v-model="getfile">
+                            </div>
+                        </div>
+                        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                            <label><input class="uk-checkbox" type="checkbox" v-model="enableDecryption"> Get Pre-signed URL</label>
+                        </div>
+                        <button class="uk-button uk-button-primary uk-button-large" @click="downloadAndDecryptData">Download File</button>
                     </div>
                 </div>
             </li>
         </ul>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="js/uikit.min.js"></script>
-    <script src="js/uikit-icons.min.js"></script>
     <script src="build/build.js"></script>
+    <script src="js/uikit.min.js" defer></script>
+    <script src="js/uikit-icons.min.js" defer></script>
 </body>
 </html>
