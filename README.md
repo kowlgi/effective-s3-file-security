@@ -9,6 +9,7 @@ Clone this repository on your computer.
 BUCKET SETUP
 ------------
 Open a terminal and cd to the bucketSetup folder. Run:
+
     chmod +x setupEncryptionBucket.sh
     chmod +x setupSigningBucket.sh
 
@@ -17,13 +18,16 @@ APP SETUP
 NOTE: The app has only been tested on nodejs v8.11.1.
 
 Open a terminal and cd to the app folder. Install dependencies :
+
     npm install
 
 Once all the dependencies have been installed, run:
+
     mkdir build
     browserify app.js > build/build.js
 
 Next start a webserver and point it to the app folder. You can run:
+
     python -m SimpleHTTPServer 3000
     lt --port 3000
 
