@@ -41,7 +41,7 @@
                         <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
                             <label><input class="uk-checkbox" type="checkbox" v-model="enableEncryption"> Encrypt</label>
                         </div>
-                        <button class="uk-button uk-button-primary uk-button-large" @click="uploadEncryptedData">Upload File</button>
+                        <button class="uk-button uk-button-primary uk-button-large" @click="uploadEncryptedFile">Upload File</button>
                         <div class="uk-alert-danger" uk-alert v-if="encrypterrormessage">
                             <p>{{encrypterrormessage}}</p>
                         </div>
@@ -63,7 +63,7 @@
                         <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
                             <label><input class="uk-checkbox" type="checkbox" v-model="enableDecryption"> Decrypt</label>
                         </div>
-                        <button class="uk-button uk-button-primary uk-button-large" @click="downloadAndDecryptData">Download File</button>
+                        <button class="uk-button uk-button-primary uk-button-large" @click="downloadAndDecryptFile">Download File</button>
                         <div class="uk-alert-danger" uk-alert v-if="decrypterrormessage">
                             <p>{{decrypterrormessage}}</p>
                         </div>
@@ -76,16 +76,66 @@
             <li>
                 <div class="uk-margin">
                     <div class="uk-container uk-container-small">
-                        <div class="uk-margin">
-                            <label class="uk-form-label" for="form-stacked-text">Filename</label>
-                            <div class="uk-form-controls">
-                                <input class="uk-input" id="form-stacked-text" type="text" placeholder="Filename" v-model="getfile">
+                        <div class="uk-margin" uk-margin>
+                            <div uk-form-custom="target: true">
+                                <input type="file">
+                                <input class="uk-input uk-form-width-medium" type="text" placeholder="Click to select file" disabled>
                             </div>
                         </div>
                         <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-                            <label><input class="uk-checkbox" type="checkbox" v-model="enableDecryption"> Get Pre-signed URL</label>
+                            <label><input class="uk-checkbox" type="checkbox" v-model="getpresignedurl"> Get Pre-signed URL</label>
                         </div>
-                        <button class="uk-button uk-button-primary uk-button-large" @click="downloadAndDecryptData">Download File</button>
+                        <button class="uk-button uk-button-primary uk-button-large" @click="uploadPresignedURLFile">Upload File</button>
+                        <div class="uk-alert-danger" uk-alert v-if="presignedurlerrormessage">
+                            <p>{{presignedurlerrormessage}}</p>
+                        </div>
+                        <div class="uk-alert-success" uk-alert v-if="presignedurlsuccessmessage">
+                            <p>{{presignedurlsuccessmessage}}</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="uk-margin">
+                    <div class="uk-container uk-container-small">
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="form-stacked-text">Filename</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" id="form-stacked-text" type="text" placeholder="Filename" v-model="getsignedurlfilename">
+                            </div>
+                        </div>
+                        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                            <label><input class="uk-checkbox" type="checkbox" v-model="getsignedurl"> Get Signed URL</label>
+                        </div>
+                        <button class="uk-button uk-button-primary uk-button-large" @click="downloadSignedURLFile">Download File</button>
+                        <div class="uk-alert-danger" uk-alert v-if="getsignedurlerrormessage">
+                            <p>{{getsignedurlerrormessage}}</p>
+                        </div>
+                        <div class="uk-alert-success" uk-alert v-if="getsignedurlsuccessmessage">
+                            <p>{{getsignedurlsuccessmessage}}</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="uk-margin">
+                    <div class="uk-container uk-container-small">
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="form-stacked-text">Filename</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" id="form-stacked-text" type="text" placeholder="Filename" v-model="getsignedcookiefilename">
+                            </div>
+                        </div>
+                        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                            <label><input class="uk-checkbox" type="checkbox" v-model="getsignedcookie"> Get Signed Cookie</label>
+                        </div>
+                        <button class="uk-button uk-button-primary uk-button-large" @click="downloadSignedCookieFile">Download File</button>
+                        <div class="uk-alert-danger" uk-alert v-if="getsignedcookieerrormessage">
+                            <p>{{getsignedcookieerrormessage}}</p>
+                        </div>
+                        <div class="uk-alert-success" uk-alert v-if="getsignedcookiesuccessmessage">
+                            <p>{{getsignedcookiesuccessmessage}}</p>
+                        </div>
                     </div>
                 </div>
             </li>
