@@ -12,34 +12,40 @@ const SIGNING_DEMO_OBJECT_KEY = "Wildlife.mp4";
 var app = new Vue({
     el: '#app',
     data: {
-        message: 'Hello world',
-        navaction: 'Log In',
+        /* encrypt */
         putfile: '',
         putobjectdata: '',
-        getfile: '',
         enableEncryption: false,
         encrypterrormessage: '',
         encryptsuccessmessage: '',
+        /* Decrypt*/
+        getfile: '',
         enableDecryption: false,
         decrypterrormessage: '',
         decryptsuccessmessage: '',
-        getpresignedurl: false,
+        /*Presigned URL */
         presignedurltitle: '👎 Using Normal URL',
         presignedurlenabled: false,
         urlforpresigneddemo: SIGNING_DEMO_URL,
         presignedurlerrormessage: '',
         presignedurlsuccessmessage: '',
-        getsignedurlfilename: '',
-        getsignedurl: false,
-        getsignedurlsuccessmessage: '',
-        getsignedurlerrormessage: '',
-        getsignedcookiefilename: '',
-        getsignedcookie: false,
-        getsignedcookiesuccessmessage: '',
-        getsignedcookieerrormessage: ''
+        /* Signed URL */
+        signedurltitle: '👎 Using Normal URL',
+        signedurlenabled: false,
+        urlforsignedurldemo: SIGNING_DEMO_URL,
+        signedurlsuccessmessage: '',
+        signedurlerrormessage: '',
+        /* Signed Cookie */
+        signedcookietitle: '👎 Not using signed cookie',
+        signedcookieenabled: false,
+        urlforsignedcookiedemo: SIGNING_DEMO_URL,
+        signedcookiesuccessmessage: '',
+        signedcookieerrormessage: ''
     },
     mounted: function(){
-        this.$refs.presigneddemovideo.addEventListener('error', this.presignedDemoVideoError);
+        this.$refs.presignedurldemovideo.addEventListener('error', this.presignedURLVideoError);
+        this.$refs.signedurldemovideo.addEventListener('error', this.signedURLVideoError);
+        this.$refs.signedcookiedemovideo.addEventListener('error', this.signedCookieVideoError);
     },
     methods: {
         uploadEncryptedFile(){
@@ -98,15 +104,39 @@ var app = new Vue({
                 this.presignedurltitle = '👍 Using Pre-signed URL';
             }
         },
-        presignedDemoVideoError(event){
+        toggleSignedURL(){
+            this.signedurlerrormessage = '';
+            if(this.signedurlenabled) {
+                this.signedurlenabled = false;
+                this.urlforsignedurldemo = SIGNING_DEMO_URL;
+                this.signedurltitle = '👎 Using Normal URL';
+            } else {
+                this.signedurlenabled = true;
+                this.urlforsignedurldemo = s3.getSignedUrl('getObject', {Key: SIGNING_DEMO_OBJECT_KEY, Bucket: SIGNING_DEMO_BUCKET});
+                this.signedurltitle = '👍 Using Signed URL';
+            }
+        },
+        toggleSignedCookie(){
+            this.signedcookieerrormessage = '';
+            if(this.signedcookieenabled) {
+                this.signedcookieenabled = false;
+                this.signedcookietitle = '👎 Not using Signed Cookie';
+            } else {
+                this.signedcookieenabled = true;
+                this.signedcookietitle = '👍 Using Signed Cookie';
+            }
+        },
+        presignedURLVideoError(event){
             event.preventDefault();
             this.presignedurlerrormessage = "Error: Cannot play video.";
         },
-        downloadSignedURLFile(){
-
+        signedURLVideoError(event){
+            event.preventDefault();
+            this.signedurlerrormessage = "Error: Cannot play video.";
         },
-        downloadSignedCookieFile(){
-
+        signedCookieVideoError(event){
+            event.preventDefault();
+            this.signedcookieerrormessage = "Error: Cannot play video.";
         }
     }
 });

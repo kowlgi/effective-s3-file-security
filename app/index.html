@@ -77,7 +77,7 @@
                 <div class="uk-margin">
                     <div class="uk-container uk-container-small">
                         <div class="uk-margin">
-                            <button class="uk-button uk-button-primary" type="button" @click="togglePresignedURL">Toggle URL</button>
+                            <button class="uk-button uk-button-primary" type="button" @click="togglePresignedURL">Toggle Pre-signed URL</button>
                         </div>
                         <div class="uk-margin">
                             <label class="uk-form-label" for="form-stacked-text">{{ presignedurltitle }} </label>
@@ -86,7 +86,7 @@
                             </div>
                         </div>
                         <div class="uk-margin">
-                            <video ref="presigneddemovideo" :src="urlforpresigneddemo" controls autoplay  width="640" height="480"/>
+                            <video ref="presignedurldemovideo" :src="urlforpresigneddemo" controls autoplay  width="640" height="480"/>
                         </div>
                         <div class="uk-alert-danger" uk-alert v-if="presignedurlerrormessage">
                             <p>{{presignedurlerrormessage}}</p>
@@ -101,20 +101,22 @@
                 <div class="uk-margin">
                     <div class="uk-container uk-container-small">
                         <div class="uk-margin">
-                            <label class="uk-form-label" for="form-stacked-text">Filename</label>
+                            <button class="uk-button uk-button-primary" type="button" @click="toggleSignedURL">Toggle Signed URL</button>
+                        </div>
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="form-stacked-text">{{ signedurltitle }} </label>
                             <div class="uk-form-controls">
-                                <input class="uk-input" id="form-stacked-text" type="text" placeholder="Filename" v-model="getsignedurlfilename">
+                                <input class="uk-input" id="form-stacked-text" type="text" placeholder="URL" v-model="urlforsignedurldemo">
                             </div>
                         </div>
-                        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-                            <label><input class="uk-checkbox" type="checkbox" v-model="getsignedurl"> Get Signed URL</label>
+                        <div class="uk-margin">
+                            <video ref="signedurldemovideo" :src="urlforsignedurldemo" controls autoplay  width="640" height="480"/>
                         </div>
-
-                        <div class="uk-alert-danger" uk-alert v-if="getsignedurlerrormessage">
-                            <p>{{getsignedurlerrormessage}}</p>
+                        <div class="uk-alert-danger" uk-alert v-if="presignedurlerrormessage">
+                            <p>{{signedurlerrormessage}}</p>
                         </div>
-                        <div class="uk-alert-success" uk-alert v-if="getsignedurlsuccessmessage">
-                            <p>{{getsignedurlsuccessmessage}}</p>
+                        <div class="uk-alert-success" uk-alert v-if="presignedurlsuccessmessage">
+                            <p>{{signedurlsuccessmessage}}</p>
                         </div>
                     </div>
                 </div>
@@ -123,20 +125,22 @@
                 <div class="uk-margin">
                     <div class="uk-container uk-container-small">
                         <div class="uk-margin">
-                            <label class="uk-form-label" for="form-stacked-text">Filename</label>
+                            <button class="uk-button uk-button-primary" type="button" @click="toggleSignedCookie">Toggle Signed Cookie</button>
+                        </div>
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="form-stacked-text">{{ signedcookietitle }} </label>
                             <div class="uk-form-controls">
-                                <input class="uk-input" id="form-stacked-text" type="text" placeholder="Filename" v-model="getsignedcookiefilename">
+                                <input class="uk-input" id="form-stacked-text" type="text" placeholder="URL" v-model="urlforsignedcookiedemo">
                             </div>
                         </div>
-                        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-                            <label><input class="uk-checkbox" type="checkbox" v-model="getsignedcookie"> Get Signed Cookie</label>
+                        <div class="uk-margin">
+                            <video ref="signedcookiedemovideo" :src="urlforsignedcookiedemo" controls autoplay  width="640" height="480"/>
                         </div>
-                        <button class="uk-button uk-button-primary uk-button-large" @click="downloadSignedCookieFile">Download File</button>
-                        <div class="uk-alert-danger" uk-alert v-if="getsignedcookieerrormessage">
-                            <p>{{getsignedcookieerrormessage}}</p>
+                        <div class="uk-alert-danger" uk-alert v-if="signedcookieerrormessage">
+                            <p>{{signedcookieerrormessage}}</p>
                         </div>
-                        <div class="uk-alert-success" uk-alert v-if="getsignedcookiesuccessmessage">
-                            <p>{{getsignedcookiesuccessmessage}}</p>
+                        <div class="uk-alert-success" uk-alert v-if="signedcookiesuccessmessage">
+                            <p>{{signedcookiesuccessmessage}}</p>
                         </div>
                     </div>
                 </div>
