@@ -8,7 +8,9 @@ var app = new Vue({
         putfile: '',
         putobjectdata: '',
         getobjectdata: '',
-        getfile: ''
+        getfile: '',
+        enableEncryption: false,
+        enableDecryption: false
     },
     methods: {
         uploadEncryptedData(){

@@ -1,25 +1,25 @@
 <html>
 <head>
-    <title>Secure video demo</title>
+    <title>Techfest Demo</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/uikit.min.css" />
+    <link rel="shortcut icon" href="assets/techfestdemologo.png" type="image/x-icon">
+    <link rel="icon" href="assets/techfestdemologo.png" type="image/x-icon">
 </head>
 <body>
     <div id="app">
         <nav class="uk-navbar-container" uk-navbar>
-            <div class="uk-navbar-right">
-                <ul class="uk-navbar-nav">
-                    <li class="uk-active"><a href="">{{ navaction }}</a></li>
-                    <li><a href=""></a></li>
-                </ul>
+            <div class="uk-navbar-left">
+                <a href="" class="uk-navbar-item uk-logo">Techfest Demo</a>
             </div>
         </nav>
         <ul class="uk-child-width-expand" uk-tab>
-            <li><a href="#">Put Encrypted</a></li>
-            <li><a href="#">Get Encrypted</a></li>
-            <li><a href="#">Get Signed URL</a></li>
-            <li><a href="#">Get Signed Cookie</a></li>
+            <li><a href="#">Encrypt</a></li>
+            <li><a href="#">Decrypt</a></li>
+            <li><a href="#">Pre-signed URL</a></li>
+            <li><a href="#">Signed URL</a></li>
+            <li><a href="#">Signed Cookie</a></li>
         </ul>
         <ul class="uk-switcher uk-margin">
             <li>
@@ -33,12 +33,15 @@
                         </div>
 
                         <div class="uk-margin">
-                            <label class="uk-form-label" for="form-stacked-text">Data</label>
+                            <label class="uk-form-label" for="form-stacked-text">File Contents</label>
                             <div class="uk-form-controls">
                                 <input class="uk-input" id="form-stacked-text" type="text" placeholder="Data" v-model="putobjectdata">
                             </div>
                         </div>
-                        <button class="uk-button uk-button-primary uk-button-large" @click="uploadEncryptedData">Encrypt and Upload</button>
+                        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                            <label><input class="uk-checkbox" type="checkbox" v-model="enableEncryption"> Encrypt</label>
+                        </div>
+                        <button class="uk-button uk-button-primary uk-button-large" @click="uploadEncryptedData">Upload File</button>
                     </div>
                 </div>
             </li>
@@ -51,7 +54,10 @@
                                 <input class="uk-input" id="form-stacked-text" type="text" placeholder="Filename" v-model="getfile">
                             </div>
                         </div>
-                        <button class="uk-button uk-button-primary uk-button-large" @click="downloadAndDecryptData">Download and Decrypt</button>
+                        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                            <label><input class="uk-checkbox" type="checkbox" v-model="enableDecryption"> Decrypt</label>
+                        </div>
+                        <button class="uk-button uk-button-primary uk-button-large" @click="downloadAndDecryptData">Download File</button>
                         <br>
                         <br>
                         <p>{{ getobjectdata }}</p>
