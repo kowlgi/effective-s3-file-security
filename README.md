@@ -11,7 +11,9 @@ BUCKET SETUP
 Open a terminal and cd to the bucketSetup folder. Run:
 
     chmod +x setupEncryptionBucket.sh
+    ./setupEncryptionBucket.sh
     chmod +x setupSigningBucket.sh
+    ./setupSigningBucket.sh
 
 APP SETUP
 ---------
