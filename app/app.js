@@ -5,6 +5,7 @@ AWS.config.update(aws_config);
 var s3 = new AWS.S3();
 const ENCRYPTION_DEMO_BUCKET = "clientside-encryption-demo-bucket";
 const SIGNING_DEMO_BUCKET = "signing-demo-bucket";
+const ENCRYPTION_CMK_ARN = "arn:aws:kms:us-east-1:311629526619:key/a2b8864e-99f1-4408-ad3a-e7ee2a129fd2"
 var app = new Vue({
     el: '#app',
     data: {
@@ -37,7 +38,7 @@ var app = new Vue({
             this.encryptsuccessmessage = '';
             this.encrypterrormessage = '';
             if(this.enableEncryption) {
-                s3en.putObject(aws_config, {Body: this.putobjectdata, Key: this.putfile, Bucket: ENCRYPTION_DEMO_BUCKET, KmsParams: {KeyId: 'arn:aws:kms:us-east-1:311629526619:key/a2b8864e-99f1-4408-ad3a-e7ee2a129fd2', KeySpec: "AES_256"}}, function(error, data){
+                s3en.putObject(aws_config, {Body: this.putobjectdata, Key: this.putfile, Bucket: ENCRYPTION_DEMO_BUCKET, KmsParams: {KeyId: ENCRYPTION_CMK_ARN, KeySpec: "AES_256"}}, function(error, data){
                     if(error) {
                         parent.encrypterrormessage = error;
                     } else {
