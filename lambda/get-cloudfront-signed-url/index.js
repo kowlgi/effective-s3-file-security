@@ -25,5 +25,5 @@ exports.handler = function (event, context, callback) {
     };
     const signedURL = signer.getSignedUrl(urlOptions);
     context.callbackWaitsForEmptyEventLoop = false;
-    callback(error, signedURL);
+    callback(null, signedURL);
 };
