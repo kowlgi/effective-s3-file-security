@@ -23,7 +23,6 @@ exports.handler = function (event, context, callback) {
         url: CLOUDFRONT_DEMO_URL,
         policy: JSON.stringify(policy)
     };
-    const signedURL = signer.getSignedUrl(urlOptions);
     context.callbackWaitsForEmptyEventLoop = false;
-    callback(null, signedURL);
+    callback(null, signer.getSignedUrl(urlOptions));
 };
