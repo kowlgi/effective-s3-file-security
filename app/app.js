@@ -110,7 +110,7 @@ var app = new Vue({
             } else {
                 lambda.invoke({
                     FunctionName: 'get-cloudfront-signed-url',
-                    InvocationType: 'Event',
+                    InvocationType: 'RequestResponse',
                     LogType: 'None'
                 }, function(err, result){
                     console.log(result);
