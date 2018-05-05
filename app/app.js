@@ -114,7 +114,7 @@ var app = new Vue({
                     LogType: 'None'
                 }, function(err, result){
                     this.signedurlenabled = true;
-                    this.urlforsignedurldemo = result.Payload;
+                    this.urlforsignedurldemo = JSON.parse(result).Payload;
                     this.signedurltitle = '👍 Using Signed URL';
                 });
             }
