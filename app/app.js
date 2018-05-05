@@ -108,12 +108,13 @@ var app = new Vue({
                 this.urlforsignedurldemo = CLOUDFRONT_DEMO_URL;
                 this.signedurltitle = '👎 Using Normal URL';
             } else {
-                this.signedurlenabled = true;
                 lambda.invoke({
                     FunctionName: 'get-cloudfront-signed-url',
-                    InvocationType: 'RequestResponse',
+                    InvocationType: 'Event',
                     LogType: 'None'
                 }, function(err, result){
+                    console.log(result);
+                    this.signedurlenabled = true;
                     this.urlforsignedurldemo = result;
                     this.signedurltitle = '👍 Using Signed URL';
                 });
