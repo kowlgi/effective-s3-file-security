@@ -42,7 +42,6 @@ var app = new Vue({
     mounted: function(){
         this.$refs.presignedurldemovideo.addEventListener('error', this.presignedURLVideoError);
         this.$refs.signedurldemovideo.addEventListener('error', this.signedURLVideoError);
-        this.$refs.signedcookiedemovideo.addEventListener('error', this.signedCookieVideoError);
     },
     methods: {
         uploadEncryptedFile(){
@@ -120,10 +119,6 @@ var app = new Vue({
         signedURLVideoError(event){
             event.preventDefault();
             this.signedurlerrormessage = "Error: Cannot play video.";
-        },
-        signedCookieVideoError(event){
-            event.preventDefault();
-            this.signedcookieerrormessage = "Error: Cannot play video.";
         }
     }
 });
