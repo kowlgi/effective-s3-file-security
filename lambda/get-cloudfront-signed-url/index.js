@@ -24,5 +24,5 @@ exports.handler = function (event, context, callback) {
         policy: JSON.stringify(policy)
     };
     context.callbackWaitsForEmptyEventLoop = false;
-    callback(null, signer.getSignedUrl(urlOptions));
+    callback(null, {signedURL: signer.getSignedUrl(urlOptions)});
 };
