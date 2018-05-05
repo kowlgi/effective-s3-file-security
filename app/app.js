@@ -4,6 +4,7 @@ var AWS = require("aws-sdk");
 AWS.config.update(aws_config);
 var s3 = new AWS.S3();
 const fs = require('fs');
+var lambda = new AWS.Lambda();
 
 const ENCRYPTION_DEMO_BUCKET = "clientside-encryption-demo-bucket";
 const SIGNING_DEMO_BUCKET = "signing-demo-bucket";
@@ -108,8 +109,14 @@ var app = new Vue({
                 this.signedurltitle = '👎 Using Normal URL';
             } else {
                 this.signedurlenabled = true;
-                this.urlforsignedurldemo = CLOUDFRONT_DEMO_URL; // FIX THIS
-                this.signedurltitle = '👍 Using Signed URL';
+                lambda.invoke({
+                    FunctionName: 'get-cloudfront-signed-url',
+                    InvocationType: 'RequestResponse',
+                    LogType: 'None'
+                }, function(err, result){
+                    this.urlforsignedurldemo = result;
+                    this.signedurltitle = '👍 Using Signed URL';
+                });
             }
         },
         presignedURLVideoError(event){
