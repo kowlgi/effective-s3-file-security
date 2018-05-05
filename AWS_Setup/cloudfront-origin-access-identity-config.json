@@ -1,0 +1,6 @@
+{
+    "CloudFrontOriginAccessIdentityConfig": {
+        "CallerReference": "",
+        "Comment": "techfest-cloudfront-demo"
+    }
+}

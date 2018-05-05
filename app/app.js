@@ -3,12 +3,15 @@ var aws_config = require('./config.js').aws_config;
 var AWS = require("aws-sdk");
 AWS.config.update(aws_config);
 var s3 = new AWS.S3();
+const fs = require('fs');
 
 const ENCRYPTION_DEMO_BUCKET = "clientside-encryption-demo-bucket";
 const SIGNING_DEMO_BUCKET = "signing-demo-bucket";
 const ENCRYPTION_CMK_ARN = "arn:aws:kms:us-east-1:311629526619:key/a2b8864e-99f1-4408-ad3a-e7ee2a129fd2"
 const SIGNING_DEMO_URL = "https://signing-demo-bucket.s3.amazonaws.com/Wildlife.mp4";
 const SIGNING_DEMO_OBJECT_KEY = "Wildlife.mp4";
+const CLOUDFRONT_DEMO_URL = "https://d2tbth1rkwpwrt.cloudfront.net/Wildlife.mp4";
+const CLOUDFRONT_DEMO_OBJECT_KEY = "Wildlife.mp4";
 var app = new Vue({
     el: '#app',
     data: {
@@ -32,15 +35,9 @@ var app = new Vue({
         /* Signed URL */
         signedurltitle: '👎 Using Normal URL',
         signedurlenabled: false,
-        urlforsignedurldemo: SIGNING_DEMO_URL,
+        urlforsignedurldemo: CLOUDFRONT_DEMO_URL,
         signedurlsuccessmessage: '',
-        signedurlerrormessage: '',
-        /* Signed Cookie */
-        signedcookietitle: '👎 Not using signed cookie',
-        signedcookieenabled: false,
-        urlforsignedcookiedemo: SIGNING_DEMO_URL,
-        signedcookiesuccessmessage: '',
-        signedcookieerrormessage: ''
+        signedurlerrormessage: ''
     },
     mounted: function(){
         this.$refs.presignedurldemovideo.addEventListener('error', this.presignedURLVideoError);
@@ -108,22 +105,12 @@ var app = new Vue({
             this.signedurlerrormessage = '';
             if(this.signedurlenabled) {
                 this.signedurlenabled = false;
-                this.urlforsignedurldemo = SIGNING_DEMO_URL;
+                this.urlforsignedurldemo = CLOUDFRONT_DEMO_URL;
                 this.signedurltitle = '👎 Using Normal URL';
             } else {
                 this.signedurlenabled = true;
-                this.urlforsignedurldemo = s3.getSignedUrl('getObject', {Key: SIGNING_DEMO_OBJECT_KEY, Bucket: SIGNING_DEMO_BUCKET});
+                this.urlforsignedurldemo = CLOUDFRONT_DEMO_URL; // FIX THIS
                 this.signedurltitle = '👍 Using Signed URL';
-            }
-        },
-        toggleSignedCookie(){
-            this.signedcookieerrormessage = '';
-            if(this.signedcookieenabled) {
-                this.signedcookieenabled = false;
-                this.signedcookietitle = '👎 Not using Signed Cookie';
-            } else {
-                this.signedcookieenabled = true;
-                this.signedcookietitle = '👍 Using Signed Cookie';
             }
         },
         presignedURLVideoError(event){

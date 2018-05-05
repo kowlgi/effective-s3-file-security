@@ -19,7 +19,6 @@
             <li><a href="#">Decrypt</a></li>
             <li><a href="#">Pre-signed URL</a></li>
             <li><a href="#">Signed URL</a></li>
-            <li><a href="#">Signed Cookie</a></li>
         </ul>
         <ul class="uk-switcher uk-margin">
             <li>
@@ -117,30 +116,6 @@
                         </div>
                         <div class="uk-alert-success" uk-alert v-if="presignedurlsuccessmessage">
                             <p>{{signedurlsuccessmessage}}</p>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="uk-margin">
-                    <div class="uk-container uk-container-small">
-                        <div class="uk-margin">
-                            <button class="uk-button uk-button-primary" type="button" @click="toggleSignedCookie">Toggle Signed Cookie</button>
-                        </div>
-                        <div class="uk-margin">
-                            <label class="uk-form-label" for="form-stacked-text">{{ signedcookietitle }} </label>
-                            <div class="uk-form-controls">
-                                <input class="uk-input" id="form-stacked-text" type="text" placeholder="URL" v-model="urlforsignedcookiedemo">
-                            </div>
-                        </div>
-                        <div class="uk-margin">
-                            <video ref="signedcookiedemovideo" :src="urlforsignedcookiedemo" controls autoplay  width="640" height="480"/>
-                        </div>
-                        <div class="uk-alert-danger" uk-alert v-if="signedcookieerrormessage">
-                            <p>{{signedcookieerrormessage}}</p>
-                        </div>
-                        <div class="uk-alert-success" uk-alert v-if="signedcookiesuccessmessage">
-                            <p>{{signedcookiesuccessmessage}}</p>
                         </div>
                     </div>
                 </div>
