@@ -38,7 +38,8 @@ var app = new Vue({
         signedurlenabled: false,
         urlforsignedurldemo: CLOUDFRONT_DEMO_URL,
         signedurlsuccessmessage: '',
-        signedurlerrormessage: ''
+        signedurlerrormessage: '',
+        showspinner: false
     },
     mounted: function(){
         this.$refs.presignedurldemovideo.addEventListener('error', this.presignedURLVideoError);
@@ -109,6 +110,8 @@ var app = new Vue({
                 this.signedurltitle = '👎 Using Normal URL';
             } else {
                 const parent = this;
+                this.$refs.togglesignedurlbutton.disabled = true;
+                this.showspinner = true;
                 lambda.invoke({
                     FunctionName: 'get-cloudfront-signed-url',
                     InvocationType: 'RequestResponse',
@@ -117,6 +120,8 @@ var app = new Vue({
                     parent.signedurlenabled = true;
                     parent.urlforsignedurldemo = JSON.parse(result.Payload).signedURL;
                     parent.signedurltitle = '👍 Using Signed URL';
+                    parent.showspinner = false;
+                    parent.$refs.togglesignedurlbutton.disabled = false;
                 });
             }
         },
