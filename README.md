@@ -2,12 +2,10 @@ effective-s3-file-security
 ==========================
 This repository is for the purposes of demonstrating a few mechanisms for AWS S3 file security. The repository contains scripts to set up S3 and a web app to help explain concepts in an easy to understand manner.
 
-GETTING STARTED
----------------
+## GETTING STARTED
 Clone this repository on your computer.
 
-BUCKET SETUP
-------------
+## BUCKET SETUP
 Open a terminal and cd to the AWS_Setup folder. Run:
 
     chmod +x setupEncryptionBucket.sh
@@ -15,8 +13,7 @@ Open a terminal and cd to the AWS_Setup folder. Run:
     chmod +x setupSigningBucket.sh
     ./setupSigningBucket.sh
 
-APP SETUP
----------
+## APP SETUP
 NOTE: The app has only been tested on nodejs v8.11.1.
 
 Open a terminal and cd to the app folder. Install dependencies :
@@ -34,3 +31,8 @@ Next start a webserver and point it to the app folder. You can run:
     lt --port 3000
 
 The lt command provides a url for the web app. Open the url in your browser and you can use the app.
+
+
+## VIDEO DEMO
+https://youtu.be/ql0On6ntvCQ?t=1588 
+
