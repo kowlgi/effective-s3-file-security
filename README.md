@@ -34,5 +34,8 @@ The lt command provides a url for the web app. Open the url in your browser and 
 
 
 ## VIDEO DEMO
-https://youtu.be/ql0On6ntvCQ?t=1588 
+[![Getting Started with S3 File Security](https://img.youtube.com/vi/ql0On6ntvCQ/0.jpg)](https://youtu.be/ql0On6ntvCQ?t=1588)
+
+Video link: https://youtu.be/ql0On6ntvCQ?t=1588 
+
 
